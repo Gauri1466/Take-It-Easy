@@ -63,7 +63,7 @@
         }
 
         .nav-links a:hover {
-            color: #ff6f61;
+            color: #ab1bcf;
         }
 
         .hero {
@@ -90,7 +90,7 @@
         .hero h1 {
             font-size: 4rem;
             margin-bottom: 1rem;
-            color: #ff6f61;
+            color: #f6f5f5;
             animation: slideInFromLeft 1s ease-in-out;
         }
 
@@ -102,24 +102,31 @@
 
         .leaderboard-container {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: space-between;
             max-width: 1000px;
             margin: 4rem auto;
             gap: 2rem;
         }
 
-        .leaderboard {
+        .leaderboard, .message-container {
             flex: 1;
             background: white;
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            animation: fadeInUp 1s ease-in-out;
+            opacity: 0; /* Initially hidden */
+            transform: translateX(0); /* Reset transform */
         }
 
-        .leaderboard h2 {
+        .leaderboard.animate {
+            animation: slideInFromLeft 1s ease-in-out forwards;
+        }
+
+        .message-container.animate {
+            animation: slideInFromRight 1s ease-in-out forwards;
+        }
+
+        .leaderboard h2, .message-container h2 {
             text-align: center;
             margin-bottom: 2rem;
             color: #4a4e69;
@@ -138,20 +145,9 @@
             border-bottom: 1px solid #e2e2e2;
         }
 
-        .message-container {
-            flex: 1;
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: fadeInUp 1s ease-in-out;
-        }
-
-        .message-container h2 {
-            color: #4a4e69;
+        .message-container img {
+            width: 100%;
+            height: auto;
             margin-bottom: 1rem;
         }
 
@@ -176,7 +172,11 @@
             border-radius: 8px;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            animation: fadeInUp 1s ease-in-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .feature-card img {
@@ -349,9 +349,9 @@
             <div>
                 <h4>Pages</h4>
                 <ul>
-                    <li><a href="landing_page.html">Home</a></li>
+                    <li><a href="landing_page2.html">Home</a></li>
                     <li><a href="login.html">Tests</a></li>
-                    <li><a href="landing_page.html">Leaderboard</a></li>
+                    <li><a href="landing_page2.html">Leaderboard</a></li>
                     <li><a href="register_page.html">Profile</a></li>
                 </ul>
             </div>
@@ -383,6 +383,20 @@
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
+            }
+
+            const leaderboard = document.querySelector('.leaderboard');
+            const messageContainer = document.querySelector('.message-container');
+            const leaderboardPosition = leaderboard.getBoundingClientRect().top;
+            const messageContainerPosition = messageContainer.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.3;
+
+            if (leaderboardPosition < screenPosition) {
+                leaderboard.classList.add('animate');
+            }
+
+            if (messageContainerPosition < screenPosition) {
+                messageContainer.classList.add('animate');
             }
         });
     </script>
