@@ -1,4 +1,17 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Page</title>
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebar");
+            sidebar.style.left = (sidebar.style.left === "0px") ? "-250px" : "0px";
+        }
+    </script>
+</head>
+  <style>
 body {
     background-image: url("Takeiteasy2.jpg");
     background-size: cover;
@@ -136,3 +149,43 @@ section {
     border-radius: 5px;
     background-color: #fff;
 }
+</style>
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo">TAKE-IT-EASY</div>
+            <div class="nav-links">
+                <a href="#">TESTS</a>
+                <a href="#">LEADERBOARD</a>
+                <a href="#">MY PROFILE</a>
+                <button class="register-btn">Register</button>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">&#10006;</button>
+        <h2>Take It Easy</h2>
+        <a href="tests.html">Tests Instructions</a>
+        <a href="day1.html">Day 1</a>
+        <a href="day2.html">Day 2</a>
+        <a href="day3.html">Day 3</a>
+    </div>
+
+    
+    <button class="open-btn" onclick="toggleSidebar()">&#9776;</button>
+
+    <div class="container">
+        <section id="instructions">
+            <h2>Test Instructions</h2>
+            <p>Welcome to the test section. Please read the instructions carefully before proceeding.</p>
+            <ul>
+                <li>Each test consists of multiple-choice and coding questions.</li>
+                <li>You will get +1 for correct answers and -1 for incorrect ones.</li>
+                <li>Once you start a test, you cannot go back.</li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>
